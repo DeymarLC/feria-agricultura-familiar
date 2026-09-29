@@ -127,6 +127,11 @@ export default function Navbar() {
               Acerca de
             </NavLink>
           </li>
+          <li>
+            <NavLink to="/sostenibilidad" className={claseEnlace} onClick={cerrarMenu}>
+              Sostenibilidad
+            </NavLink>
+          </li>
 
           {/* Separador visual en escritorio */}
           <li aria-hidden="true" className="hidden border-t border-tierra-100 my-1 md:mx-2 md:my-0 md:min-h-6 md:border-t-0 md:border-l" />

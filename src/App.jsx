@@ -9,6 +9,7 @@ import Ingresar from './pages/Ingresar.jsx'
 import Registro from './pages/Registro.jsx'
 import AcercaDe from './pages/AcercaDe.jsx'
 import NoMatch from './pages/NoMatch.jsx'
+import Sostenibilidad from './pages/Sostenibilidad.jsx'
 
 /**
  * App — Configuración de rutas de la aplicación.
@@ -36,6 +37,7 @@ export default function App() {
           }
         />
         <Route path="acerca-de" element={<AcercaDe />} />
+        <Route path="sostenibilidad" element={<Sostenibilidad />} />
         <Route path="*" element={<NoMatch />} />
       </Route>
     </Routes>

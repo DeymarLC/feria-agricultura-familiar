@@ -6,8 +6,11 @@
  * normalización de los registros y la sesión del usuario (token JWT).
  */
 
-// Dirección del backend Flask (configurado en backend/.env → puerto 5000).
-const API_URL = 'http://localhost:5000/api'
+// Dirección del backend (Flask).
+// Despliegue "todo-en-uno": Flask sirve el mismo origen → ruta relativa /api.
+// En desarrollo, Vite redirige /api hacia http://localhost:5000 por proxy
+// (ver vite.config.js). Sellado opcional con VITE_API_URL si hiciera falta.
+const API_URL = import.meta.env.VITE_API_URL || '/api'
 
 // Claves del navegador donde se guarda la sesión (token + perfil).
 const CLAVE_TOKEN = 'feria_token'
@@ -193,4 +196,11 @@ export async function registrarUsuario({ nombre, correo, password, rol }) {
 /** GET /usuarios/me — devuelve el perfil del usuario autenticado */
 export async function obtenerPerfil() {
   return peticion('GET', '/usuarios/me')
+}
+
+// ---------- Métricas de sostenibilidad ----------
+
+/** GET /metricas — tablero de sostenibilidad: técnico, catálogo y social */
+export async function obtenerMetricas() {
+  return peticion('GET', '/metricas')
 }

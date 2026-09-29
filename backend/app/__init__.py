@@ -5,11 +5,18 @@ Reúne la configuración, CORS restringido, documentación Swagger y el
 registro de los Blueprints de cada recurso (/api/usuarios, /api/ferias,
 /api/productos). Mantener este archivo pequeño evita el "monolito".
 """
-from flask import Flask, jsonify
+from flask import Flask, abort, jsonify, send_from_directory
 from flask_cors import CORS
 from flasgger import Swagger
+from pathlib import Path
 
 from .config import Config
+
+# Raíz del proyecto (este archivo está en backend/app):
+#   __file__ → backend/app/__init__.py
+#   parents  → [app, backend, raíz del repo]
+RAIZ_PROYECTO = Path(__file__).resolve().parents[2]
+DIR_DIST = RAIZ_PROYECTO / 'dist'
 
 
 def create_app():
@@ -76,5 +83,25 @@ def create_app():
     def salud():
         """Marca de salud de la API."""
         return jsonify({'estado': 'ok', 'servicio': 'Feria de Agricultura Familiar'})
+
+    if DIR_DIST.is_dir():
+        # ------------------------------------------------------------
+        # Servido estático del frontend compilado (despliegue todo-en-uno).
+        # - "/" entrega index.html.
+        # - Cualquier ruta no-API (SPA de React Router) cae al index.html.
+        # - Los /api/* y /apidocs los resuelven los blueprints y Swagger;
+        #   la ruta restante <path:ruta> solo actúa cuando nada mejor coincide.
+        # ------------------------------------------------------------
+        @app.get('/')
+        def indice():
+            return send_from_directory(DIR_DIST, 'index.html')
+
+        @app.get('/<path:ruta>')
+        def spa(ruta):
+            if ruta.startswith('api/') or ruta.startswith('apidocs'):
+                abort(404)
+            if (DIR_DIST / ruta).is_file():
+                return send_from_directory(DIR_DIST, ruta)
+            return send_from_directory(DIR_DIST, 'index.html')
 
     return app

@@ -1,17 +1,21 @@
 # ============================================================
 # render.yaml — Blueprint de despliegue en Render.
 #
-# Define DOS servicios:
-#   1. database   → PostgreSQL (gratuito). Render expone DATABASE_URL.
-#   2. web        → API Flask servida con gunicorn.
+# Estrategia "todo-en-uno": UN Web Service (Python/Gunicorn) sirve
+# la API Flask Y el frontend compilado (dist/ → mismo origen).
 #
-# Instrucciones: en Render → "New +" → "Blueprint" → conectar este
-# repositorio (o subir la carpeta backend/ como raíz del servicio).
+# Build  → ./render-build.sh (compila React, instala Python, migra la BD).
+# Start  → gunicorn run:app  (Flask sirve /api + /apidocs + el SPA).
+#
+# IMPORTANTE (secretos):
+#   - DATABASE_URL se pega MANUALMENTE en Render (base Supabase real).
+#     Con sync:false Render NO crea un Postgres propio.
+#   - SECRET_KEY y JWT_SECRET se generan automáticamente.
 # ============================================================
 
 services:
   - type: web
-    name: feria-agricultura-familiar-api
+    name: feria-agricultura-familiar
     runtime: python
     plan: free
     rootDir: backend
@@ -21,7 +25,8 @@ services:
     envVars:
       - key: FLASK_ENV
         value: production
-      # CORS permitido: la URL de TU frontend desplegado (nunca *).
+      # CORS: en producción el SPA es mismo-origen, así que no se dispara.
+      # Se deja la URL pública por si se consume la API desde otro origen.
       - key: CORS_ORIGINS
         value: https://feria-agricultura-familiar.onrender.com
       - key: JWT_EXPIRES_MINUTES
@@ -31,14 +36,7 @@ services:
         generateValue: true
       - key: JWT_SECRET
         generateValue: true
-      # Conexión a la base de datos del mismo blueprint.
+      # Conexión a Supabase (base real del proyecto). Se pega en Render:
+      #   postgresql://postgres.<ref>:<password>@aws-0-us-east-2.pooler.supabase.com:5432/postgres?sslmode=require
       - key: DATABASE_URL
-        fromDatabase:
-          name: feria-agricultura-familiar-db
-          property: connectionString
-
-databases:
-  - name: feria-agricultura-familiar-db
-    plan: free
-    # El plan gratuito tiene una política: la base expira a los 30 días.
-    # Para demos de la materia alcanza; para producción real usar un plan de pago.
+        sync: false
