@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="400" viewBox="0 0 800 400" role="img" aria-labelledby="title">
+  <title id="title">Puestos de frutas y conservas artesanales</title>
+  <rect width="800" height="400" fill="#f7f3ee"/>
+  <rect y="340" width="800" height="60" fill="#9a6b3f"/>
+  <rect x="80" y="220" width="190" height="120" fill="#f0c060"/>
+  <circle cx="130" cy="230" r="14" fill="#e05a4a"/>
+  <circle cx="160" cy="228" r="14" fill="#2f7d4a"/>
+  <circle cx="190" cy="232" r="14" fill="#f07a2a"/>
+  <circle cx="220" cy="230" r="14" fill="#a85c0f"/>
+  <rect x="300" y="200" width="200" height="140" fill="#efdfc8"/>
+  <rect x="330" y="210" width="50" height="70" fill="#2f7d4a"/>
+  <rect x="400" y="210" width="50" height="70" fill="#9a6b3f"/>
+  <rect x="330" y="292" width="50" height="26" fill="#e05a4a"/>
+  <rect x="400" y="292" width="50" height="26" fill="#f0c060"/>
+  <circle cx="560" cy="240" r="70" fill="#d8eedd"/>
+  <path d="M520 240 Q560 200 600 240 Q590 290 560 290 Q530 290 520 240 Z" fill="#2f7d4a"/>
+  <rect x="540" y="240" width="40" height="10" fill="#7c5330"/>
+  <rect x="516" y="310" width="88" height="70" fill="#9a6b3f"/>
+  <circle cx="560" cy="330" r="26" fill="#f0c060"/>
+</svg>

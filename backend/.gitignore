@@ -1,0 +1,16 @@
+# Secretos: nunca versionar
+.env
+
+# Entorno virtual de Python
+venv/
+.venv/
+
+# Caché de Python
+__pycache__/
+*.py[cod]
+
+# Archivos de tests
+.pytest_cache/
+
+# Base de datos local (si alguien hiciera un dump)
+*.sql.gz

@@ -1,0 +1,41 @@
+@import 'tailwindcss';
+
+/* Contraste WCAG AA garantizado por defecto en los colores de la paleta */
+@theme {
+  --color-tierra-50: #f7f3ee;
+  --color-tierra-100: #efe5d8;
+  --color-tierra-500: #9a6b3f;
+  --color-tierra-600: #7c5330;
+  --color-tierra-700: #644227;
+  --color-tierra-800: #4d341f;
+  --color-tierra-900: #3a2717;
+  --color-verde-50: #eef7f0;
+  --color-verde-100: #d8eedd;
+  --color-verde-500: #2f7d4a;
+  --color-verde-600: #25613a;
+  --color-verde-700: #1e4d2e;
+  --color-verde-800: #173c25;
+  --color-verde-900: #102b1a;
+  --color-verde-950: #0a1c11;
+  --color-fondo: #fafaf8;
+  --color-marfil: #ffffff;
+
+  --font-sans: 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-fondo);
+  color: var(--color-tierra-900);
+}
+
+/* Foco visible para accesibilidad de teclado (WCAG 2.4.7) */
+:focus-visible {
+  outline: 3px solid var(--color-verde-500);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
