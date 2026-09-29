@@ -109,7 +109,7 @@ Se creó el blueprint `backend/app/blueprints/metricas.py` que expone `GET /api/
 
 | Bloque | Métricas | Valor verificado |
 |---|---|---|
-| **técnico** | `tamano_kb` (peso de `dist/`), `num_archivos`, `co2_por_vista_g` | 342,6 KB · 8 archivos · **0,62 g CO₂e/vista** |
+| **técnico** | `tamano_kb` (peso de `dist/`), `num_archivos`, `co2_por_vista_g` | 348,4 KB · 8 archivos · **0,62 g CO₂e/vista** (medido en producción) |
 | **catálogo** | ferias, productores, productos, destacadas, próximas, ubicaciones | 3 · 2 · 11 · 3 · 3 · 6 |
 | **social** | productos comercializados, km evitados, CO₂ evitado | 11 · 105 km · **16,8 kg CO₂e** |
 
@@ -133,7 +133,7 @@ El bloque `metodologia` documenta las constantes: 35 km por feria local, 0,16 kg
 
 | Indicador | Valor |
 |---|---|
-| Peso del frontend compilado | 342,6 KB (JS 308,1 KB + CSS 25,4 KB) |
+| Peso del frontend compilado | 348,4 KB (JS 300,9 KB + CSS 29,6 KB) medido en producción |
 | Huella por vista estimada | 0,62 g CO₂e |
 | Pruebas automatizadas | 33/33 (100 %) |
 | Rutas de la API documentadas en Swagger | 7 |
@@ -211,7 +211,25 @@ Herramienta utilizada: asistente de desarrollo *opencode* (modelo big-pickle). L
 - Swagger UI: `/apidocs/` · Especificación: `/apispec_1.json` (7 rutas)
 - Tablero: `/sostenibilidad` · Métricas: `/api/metricas`
 - Suite de pruebas: `backend/scripts/pruebas_e2e.py` → `Resumen: 33 / 33 pruebas OK`
-- Historial de despliegue: 6 *commits* en `main` (Act. 3 y Act. 4) con integración continua en Vercel.
+- Historial de despliegue: 8 *commits* en `main` (Act. 3 y Act. 4) con integración continua en Vercel.
+
+**Verificación del sitio publicado (checklist de producción):**
+
+| Prueba contra `https://feria-agricultura-familiar.vercel.app` | Resultado |
+|---|---|
+| `GET /api/health` | 200 · `{"estado":"ok",...}` |
+| `GET /api/ferias` | 200 · 3 ferias |
+| `GET /api/metricas` | 200 · 3 bloques (0,62 g CO₂e/vista; 3 ferias, 2 productores, 11 productos; 105 km, 16,8 kg CO₂e) |
+| `GET /`, `/ingresar`, `/sostenibilidad` | 200 · SPA con *fallback* |
+| `GET /apidocs/` y `/apispec_1.json` | 200 · 7 rutas documentadas |
+| Assets JS/CSS | 200 (300,9 KB + 29,6 KB) |
+| `GET /api/inexistente` | 404 en formato JSON |
+| Cabecera CORS | `Access-Control-Allow-Origin` restringido al origen de producción |
+| `POST /api/usuarios/login` + `GET /api/usuarios/me` | token JWT; devuelve perfil con rol (`admin` y `productor`) |
+| Login con clave incorrecta | 401 |
+| Smoke test de escritura (crear producto → verificar → eliminar) | 201 → visible en catálogo → eliminado de la BD (autolimpieza) |
+
+Todos los checks del checklist pasaron el 29 de septiembre de 2026.
 
 ---
 
