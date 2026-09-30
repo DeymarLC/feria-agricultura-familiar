@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" width="1200" height="600" preserveAspectRatio="xMidYMid slice" role="img" aria-labelledby="t4">
+  <title id="t4">Mesa con productos de la temporada en un puesto de feria</title>
+  <defs>
+    <linearGradient id="f4-cielo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#cde9d3" />
+      <stop offset="0.55" stop-color="#eaf6e6" />
+      <stop offset="1" stop-color="#fdf6e3" />
+    </linearGradient>
+    <radialGradient id="f4-sol" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#fff6d8" />
+      <stop offset="0.6" stop-color="#fcd34d" />
+      <stop offset="1" stop-color="#f59e0b" />
+    </radialGradient>
+    <pattern id="f4-rayas" width="44" height="44" patternUnits="userSpaceOnUse">
+      <rect width="44" height="44" fill="#ffffff" />
+      <rect width="22" height="44" fill="#1e4d2e" />
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="600" fill="url(#f4-cielo)" />
+
+  <!-- Sol -->
+  <circle cx="1040" cy="130" r="76" fill="url(#f4-sol)" />
+
+  <!-- Colinas suaves -->
+  <g fill="#7cb56a" opacity="0.55">
+    <path d="M0 340q180-96 360-40t360 34 480-24v290H0z" />
+  </g>
+  <g fill="#4f9a52" opacity="0.6">
+    <path d="M0 400q220-84 440-26t380 26 380-10v210H0z" />
+  </g>
+
+  <!-- Puesto con toldo -->
+  <rect x="180" y="252" width="840" height="30" rx="10" fill="url(#f4-rayas)" />
+  <path d="M180 282h840l-22 30H202z" fill="#efe5d8" />
+  <rect x="200" y="312" width="16" height="230" fill="#9a6b3f" />
+  <rect x="984" y="312" width="16" height="230" fill="#9a6b3f" />
+
+  <!-- Mesa de madera -->
+  <rect x="150" y="452" width="900" height="30" rx="10" fill="#b9862f" />
+  <rect x="150" y="482" width="900" height="14" rx="6" fill="#8c6a2a" />
+  <rect x="190" y="496" width="20" height="90" fill="#9a6b3f" />
+  <rect x="990" y="496" width="20" height="90" fill="#9a6b3f" />
+
+  <!-- Canastras con productos -->
+  <g>
+    <g transform="translate(232 452)">
+      <path d="M0-56h150l-14 56H14z" fill="#d97706" />
+      <g fill="#f59e0b"><circle cx="42" cy="-64" r="20" /><circle cx="80" cy="-72" r="17" /><circle cx="116" cy="-62" r="19" /></g>
+    </g>
+    <g transform="translate(410 452)">
+      <path d="M0-52h150l-14 52H14z" fill="#4d341f" />
+      <g fill="#e05a4a"><circle cx="44" cy="-60" r="19" /><circle cx="84" cy="-66" r="16" /><circle cx="120" cy="-58" r="18" /></g>
+    </g>
+    <g transform="translate(588 452)">
+      <path d="M0-56h150l-14 56H14z" fill="#25613a" />
+      <g fill="#2f7d4a">
+        <ellipse cx="48" cy="-66" rx="26" ry="16" /><ellipse cx="98" cy="-62" rx="24" ry="15" /><ellipse cx="140" cy="-70" rx="20" ry="13" />
+      </g>
+    </g>
+    <g transform="translate(766 452)">
+      <path d="M0-52h150l-14 52H14z" fill="#7c5330" />
+      <g fill="#fcd34d"><circle cx="46" cy="-60" r="18" /><circle cx="86" cy="-68" r="15" /><circle cx="124" cy="-58" r="17" /></g>
+    </g>
+    <g transform="translate(926 452)">
+      <path d="M0-50h150l-14 50H14z" fill="#1e4d2e" />
+      <g fill="#6b3fa0"><circle cx="46" cy="-58" r="17" /><circle cx="86" cy="-64" r="15" /><circle cx="124" cy="-56" r="16" /></g>
+    </g>
+  </g>
+
+  <!-- Etiqueta de precio colgante -->
+  <g transform="translate(560 316)">
+    <path d="M0 0v40" stroke="#4d341f" stroke-width="4" />
+    <rect x="-40" y="40" width="80" height="52" rx="8" fill="#fef3c7" stroke="#d97706" stroke-width="4" />
+    <path d="M-24 60h48M-24 74h30" stroke="#92400e" stroke-width="5" stroke-linecap="round" />
+  </g>
+</svg>

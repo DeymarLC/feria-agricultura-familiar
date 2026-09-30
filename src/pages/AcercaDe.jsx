@@ -5,10 +5,28 @@ export default function AcercaDe() {
   return (
     <main id="contenido" className="mx-auto max-w-3xl px-4 py-10 sm:px-6">
       <article aria-labelledby="titulo-acerca">
-        <h1 id="titulo-acerca" className="text-3xl font-extrabold text-tierra-900">
-          Acerca de la Feria de Agricultura Familiar
-        </h1>
-        <p className="mt-4 leading-relaxed text-tierra-700">
+        <header className="marca animar-entrada relative isolate overflow-hidden rounded-[2rem] px-6 py-10 text-white shadow-xl sm:px-10 sm:py-12">
+          <span aria-hidden="true" className="halo -right-12 -top-16 h-56 w-56 bg-sol-500" />
+          <div className="relative flex flex-wrap items-center gap-6">
+            <img
+              src="/logo.svg"
+              alt=""
+              width="88"
+              height="88"
+              className="size-20 rounded-2xl shadow-lg sm:size-24"
+            />
+            <div>
+              <h1 id="titulo-acerca" className="text-3xl font-black sm:text-4xl">
+                Acerca de FeriaCruz
+              </h1>
+              <p className="mt-2 max-w-2xl text-verde-50">
+                Ferias de agricultura familiar de Santa Cruz, Bolivia.
+              </p>
+            </div>
+          </div>
+        </header>
+
+        <p className="mt-6 leading-relaxed text-tierra-700">
           Este proyecto frontend forma parte de la asignatura <strong>Programación Web 2</strong>.
           Su objetivo es demostrar una implementación profesional de React, Vite y Tailwind
           CSS aplicando accesibilidad WCAG AA y buenas prácticas de rendimiento web.

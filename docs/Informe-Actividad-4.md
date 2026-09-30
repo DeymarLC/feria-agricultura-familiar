@@ -4,8 +4,8 @@
 **Universidad:** Universidad Privada Domingo Savio (U.P.D.S.)
 **Carrera / Asignatura:** Programación Web II
 **Proyecto:** Feria de Agricultura Familiar — Plataforma web de comercialización de productos agroecológicos
-**Autor(es):** [Nombre del estudiante]
-**Docente:** [Nombre del docente]
+**Autor(es):** Deymar Lozano Carballo
+**Docente:** Jimmy Nataniel Requena Llorentty
 **Fecha:** 29 de septiembre de 2026
 **Modalidad:** Informe técnico (norma APA, 7.ª ed.)
 

@@ -28,10 +28,10 @@ export default function Navbar() {
 
   // Estilos que cambian según si el enlace es la página activa
   const claseEnlace = ({ isActive }) =>
-    `block rounded-lg px-4 py-2 text-base font-medium transition-colors ${
+    `block rounded-full px-4 py-2 text-base font-semibold transition-all ${
       isActive
-        ? 'bg-verde-500/15 text-verde-700'
-        : 'text-tierra-800 hover:text-verde-700'
+        ? 'bg-verde-700 text-white shadow-md'
+        : 'text-tierra-800 hover:bg-verde-500/10 hover:text-verde-700'
     }`
 
   // Cierra el menú con la tecla Escape para personas que usan teclado
@@ -49,7 +49,7 @@ export default function Navbar() {
   }
 
   return (
-    <header className="sticky top-0 z-50 border-b border-tierra-100 bg-marfil/95 backdrop-blur supports-[backdrop-filter]:bg-marfil/80">
+    <header className="sticky top-0 z-50 border-b border-tierra-100 bg-marfil/90 backdrop-blur supports-[backdrop-filter]:bg-marfil/75">
       {/* Enlace de salto: oculto visualmente, visible al recibir foco */}
       <a
         href="#contenido"
@@ -66,14 +66,13 @@ export default function Navbar() {
         {/* Marca / logo */}
         <Link
           to="/"
-          className="flex items-center gap-2 text-lg font-bold text-verde-700"
-          aria-label="Feria de Agricultura Familiar — volver al inicio"
+          className="marca group flex items-center gap-2 rounded-full py-1 pl-1 pr-4 text-white shadow-md transition-transform hover:scale-[1.02]"
+          aria-label="FeriaCruz — volver al inicio"
         >
-          <span aria-hidden="true" className="text-2xl">
-            🌾
+          <img src="/logo.svg" alt="" width="36" height="36" className="size-9" />
+          <span className="text-lg font-black tracking-tight sm:text-xl">
+            Feria<span className="text-sol-300">Cruz</span>
           </span>
-          <span className="sr-only">Feria de Agricultura Familiar</span>
-          <span className="hidden sm:inline">Feria de Agricultura Familiar</span>
         </Link>
 
         {/* Botón hamburguesa (solo móvil) */}

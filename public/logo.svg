@@ -1,14 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-labelledby="fc-title">
-  <title id="fc-title">FeriaCruz</title>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-labelledby="logo-feriacruz">
+  <title id="logo-feriacruz">FeriaCruz</title>
   <defs>
-    <linearGradient id="fav-fondo" x1="0" y1="0" x2="1" y2="1">
+    <linearGradient id="fc-fondo" x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stop-color="#2f7d4a" />
       <stop offset="0.55" stop-color="#1e4d2e" />
       <stop offset="1" stop-color="#d97706" />
     </linearGradient>
   </defs>
 
-  <rect width="64" height="64" rx="18" fill="url(#fav-fondo)" />
+  <rect width="64" height="64" rx="18" fill="url(#fc-fondo)" />
   <circle cx="46" cy="18" r="6.5" fill="#fbbf24" />
 
   <g fill="#ffffff">

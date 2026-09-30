@@ -1,15 +1,95 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="400" viewBox="0 0 800 400" role="img" aria-labelledby="title">
-  <title id="title">Feria campesina frente al mar</title>
-  <rect width="800" height="400" fill="#d8eedd"/>
-  <path d="M0 260 Q400 180 800 260 L800 400 L0 400 Z" fill="#7cb8cf"/>
-  <circle cx="680" cy="90" r="40" fill="#f0c060"/>
-  <rect x="140" y="300" width="150" height="100" fill="#f7f3ee"/>
-  <path d="M100 300 L215 230 L330 300 Z" fill="#9a6b3f"/>
-  <rect x="180" y="360" width="22" height="40" fill="#9a6b3f"/>
-  <rect x="228" y="360" width="22" height="40" fill="#9a6b3f"/>
-  <circle cx="215" cy="268" r="16" fill="#e05a4a"/>
-  <circle cx="560" cy="300" r="80" fill="#25613a"/>
-  <circle cx="540" cy="280" r="10" fill="#f7f3ee"/>
-  <circle cx="580" cy="290" r="8" fill="#f7f3ee"/>
-  <rect x="400" y="280" width="80" height="90" fill="#efdfc8"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" width="1200" height="600" preserveAspectRatio="xMidYMid slice" role="img" aria-labelledby="t3">
+  <title id="t3">Terrazas de viñedo y cosechadores en un valle de montaña</title>
+  <defs>
+    <linearGradient id="f3-cielo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#2f4f6d" />
+      <stop offset="0.4" stop-color="#7e6f9a" />
+      <stop offset="0.75" stop-color="#e4a07a" />
+      <stop offset="1" stop-color="#fbd9a0" />
+    </linearGradient>
+    <linearGradient id="f3-ladera" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#5c7f45" />
+      <stop offset="1" stop-color="#2f5a37" />
+    </linearGradient>
+    <radialGradient id="f3-sol" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#fff2c4" />
+      <stop offset="0.6" stop-color="#fcd34d" />
+      <stop offset="1" stop-color="#f59e0b" />
+    </radialGradient>
+    <pattern id="f3-vinedo" width="46" height="46" patternUnits="userSpaceOnUse">
+      <rect width="46" height="46" fill="#3d6b3f" />
+      <circle cx="23" cy="23" r="15" fill="#4f8a49" />
+      <circle cx="18" cy="18" r="5" fill="#63a45a" />
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="600" fill="url(#f3-cielo)" />
+
+  <!-- Sol de la tarde -->
+  <circle cx="880" cy="300" r="96" fill="url(#f3-sol)" />
+  <circle cx="880" cy="300" r="150" fill="#fbbf24" opacity="0.2" />
+
+  <!-- Aves -->
+  <g stroke="#2b2436" stroke-width="4" fill="none" stroke-linecap="round" opacity="0.7">
+    <path d="M300 120q16-16 32 0 16-16 32 0" />
+    <path d="M400 168q12-12 24 0 12-12 24 0" />
+  </g>
+
+  <!-- Montañas lejanas en capas (bruma) -->
+  <path d="M0 340 210 150l150 130 190-170 210 190 170-140 270 180v180H0z" fill="#4a5a78" opacity="0.65" />
+  <path d="M0 372 190 226l160 108 180-124 200 138 180-116 290 152v116H0z" fill="#3f5266" opacity="0.8" />
+  <!-- Nevadas -->
+  <g fill="#e9eef5" opacity="0.75">
+    <path d="M170 190l40-40 20 26 24-34 40 44-30-14-18 20-16-22-26 26z" />
+    <path d="M510 152l34-34 18 22 20-28 34 36-26-12-16 18-14-18-22 22z" />
+  </g>
+
+  <!-- Ladera con viñedo -->
+  <path d="M0 380q300-70 620-24t580 26v218H0z" fill="url(#f3-ladera)" />
+  <path d="M0 418q300-64 620-20t580 24v178H0z" fill="url(#f3-vinedo)" opacity="0.95" />
+
+  <!-- Terrazas -->
+  <g fill="none" stroke="#f3e2c0" stroke-width="6" opacity="0.55">
+    <path d="M0 452q300-60 620-18t580 22" />
+    <path d="M0 504q300-56 620-16t580 20" />
+    <path d="M0 556q300-52 620-14t580 18" />
+  </g>
+
+  <!-- Camino de tierra -->
+  <path d="M980 600q-40-120-120-150-60-22-140-20l0 34q70 2 116 22 62 28 96 114z" fill="#c9a06a" opacity="0.9" />
+
+  <!-- Capilla del valle -->
+  <g transform="translate(168 386)">
+    <rect x="0" y="46" width="86" height="66" fill="#f7f3ee" />
+    <path d="M-8 48 43 14l51 34z" fill="#8c4a3a" />
+    <rect x="33" y="-14" width="20" height="32" fill="#f7f3ee" />
+    <rect x="36" y="-24" width="14" height="12" fill="#8c4a3a" />
+    <rect x="30" y="76" width="26" height="36" rx="12" fill="#644227" />
+    <rect x="12" y="60" width="14" height="18" rx="7" fill="#cfe8f2" />
+    <rect x="60" y="60" width="14" height="18" rx="7" fill="#cfe8f2" />
+  </g>
+
+  <!-- Vendimiadores y canastos de uvas -->
+  <g fill="#173c25">
+    <g transform="translate(596 470)">
+      <circle cx="0" cy="0" r="18" />
+      <path d="M-21 23c0-15 9-25 21-25s21 10 21 25z" />
+      <rect x="28" y="-26" width="40" height="24" rx="8" fill="#d97706" />
+    </g>
+    <g transform="translate(716 502)">
+      <circle cx="0" cy="0" r="15" />
+      <path d="M-18 19c0-13 8-21 18-21s18 8 18 21z" />
+      <rect x="24" y="-22" width="34" height="20" rx="7" fill="#f59e0b" />
+    </g>
+  </g>
+  <g fill="#6b3fa0">
+    <circle cx="352" cy="470" r="13" /><circle cx="386" cy="464" r="11" /><circle cx="418" cy="474" r="12" />
+    <circle cx="372" cy="486" r="10" /><circle cx="406" cy="486" r="9" />
+  </g>
+
+  <!-- vides aisladas en primer plano -->
+  <g fill="#2b5230">
+    <path d="M0 600v-56c40-22 76-22 110 0v56z" />
+    <path d="M1200 600v-64c-42-24-80-24-116 0v64z" />
+  </g>
 </svg>

@@ -2,6 +2,9 @@ import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { obtenerFeriaPorId } from '../services/feriasApi.js'
 
+/** Imagen usada cuando la feria no tiene una foto propia o el archivo falla. */
+const IMAGEN_POR_DEFECTO = '/images/feria-4.svg'
+
 /**
  * DetalleFeria — Ficha individual de una feria (ruta /ferias/:id).
  *
@@ -78,9 +81,15 @@ export default function DetalleFeria() {
         <article aria-labelledby="titulo-feria" className="mt-6 overflow-hidden rounded-3xl border border-tierra-100 bg-marfil shadow-sm">
           {/* Imagen principal */}
           <img
-            src={feria.imagen}
+            src={feria.imagen?.trim() || IMAGEN_POR_DEFECTO}
             alt={`Vista general de la feria ${feria.nombre} en ${feria.ubicacion}`}
-            className="h-64 w-full object-cover sm:h-80"
+            width="1200"
+            height="600"
+            onError={(evento) => {
+              if (evento.currentTarget.src.endsWith(IMAGEN_POR_DEFECTO)) return
+              evento.currentTarget.src = IMAGEN_POR_DEFECTO
+            }}
+            className="h-64 w-full bg-verde-100 object-cover sm:h-80"
           />
 
           <div className="p-6 sm:p-8">

@@ -40,14 +40,28 @@ export default function Ferias() {
   return (
     <main id="contenido" className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
       <section aria-labelledby="titulo-catalogo">
-        <header className="mb-8">
-          <h1 id="titulo-catalogo" className="text-3xl font-extrabold text-tierra-900">
-            Catálogo de ferias
-          </h1>
-          <p className="mt-2 max-w-2xl text-tierra-600">
-            Explora las ferias de agricultura familiar de Santa Cruz, Bolivia. Cada
-            tarjeta agrupa la información principal y un enlace a su ficha completa.
-          </p>
+        <header className="marca animar-entrada relative isolate mb-10 overflow-hidden rounded-[2rem] px-6 py-10 text-white shadow-xl sm:px-10 sm:py-12">
+          <span aria-hidden="true" className="halo -right-10 -top-16 h-56 w-56 bg-sol-500" />
+          <div className="relative">
+            <p className="text-sm font-semibold uppercase tracking-widest text-verde-100">
+              Del productor a tu mesa
+            </p>
+            <h1
+              id="titulo-catalogo"
+              className="mt-2 text-3xl font-black tracking-tight sm:text-4xl"
+            >
+              Catálogo de ferias
+            </h1>
+            <p className="mt-3 max-w-2xl text-verde-50">
+              Explora las ferias de la agricultura familiar de Santa Cruz, Bolivia. Cada
+              tarjeta muestra la fecha, el lugar y los productos disponibles.
+            </p>
+            {!cargando && !error && ferias.length > 0 && (
+              <p className="mt-5 inline-flex rounded-full border border-white/25 bg-white/10 px-4 py-1.5 text-sm font-semibold backdrop-blur">
+                {ferias.length} {ferias.length === 1 ? 'feria disponible' : 'ferias disponibles'}
+              </p>
+            )}
+          </div>
         </header>
 
         {/* Cargando */}
@@ -83,8 +97,7 @@ export default function Ferias() {
               <FeriasCard key={feria.id} feria={feria} />
             ))}
           </div>
-        )}
-      </section>
+        )}      </section>
     </main>
   )
 }

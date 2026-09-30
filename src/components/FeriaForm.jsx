@@ -35,15 +35,28 @@ const validarUbicacion = (valor) => {
   return ''
 }
 
+/**
+ * Fecha de hoy en formato YYYY-MM-DD usando la hora local del navegador.
+ * No se usa `toISOString()` porque convierte a UTC y en Bolivia (UTC-4)
+ * devolvería el día siguiente durante la tarde.
+ */
+const hoyISO = () => {
+  const ahora = new Date()
+  const mes = String(ahora.getMonth() + 1).padStart(2, '0')
+  const dia = String(ahora.getDate()).padStart(2, '0')
+  return `${ahora.getFullYear()}-${mes}-${dia}`
+}
+
 const validarFecha = (valor, fechaFinal) => {
   if (!valor) return 'La fecha de inicio es obligatoria.'
-  if (fechaFinal && fechaFinal <= valor) return 'La fecha de fin debe ser posterior a la de inicio.'
+  if (valor < hoyISO()) return 'La fecha de inicio no puede ser en el pasado.'
+  if (fechaFinal && fechaFinal < valor) return 'La fecha de fin no puede ser anterior a la de inicio.'
   return ''
 }
 
 const validarFechaFin = (valor, fechaInicio) => {
   if (!valor) return 'La fecha de fin es obligatoria.'
-  if (fechaInicio && valor <= fechaInicio) return 'La fecha de fin debe ser posterior a la de inicio.'
+  if (fechaInicio && valor < fechaInicio) return 'La fecha de fin no puede ser anterior a la de inicio.'
   return ''
 }
 
@@ -300,6 +313,7 @@ export default function FeriaForm() {
             value={datos.fechaInicio}
             onChange={manejarCambio('fechaInicio')}
             onBlur={manejarBlur('fechaInicio')}
+            min={hoyISO()}
             required
             aria-required="true"
             aria-describedby={errores.fechaInicio ? `error-${idFechaInicio}` : undefined}
@@ -320,6 +334,7 @@ export default function FeriaForm() {
             value={datos.fechaFin}
             onChange={manejarCambio('fechaFin')}
             onBlur={manejarBlur('fechaFin')}
+            min={datos.fechaInicio || hoyISO()}
             required
             aria-required="true"
             aria-describedby={errores.fechaFin ? `error-${idFechaFin}` : undefined}

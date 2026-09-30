@@ -1,15 +1,148 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="800" height="400" viewBox="0 0 800 400" role="img" aria-labelledby="title">
-  <title id="title">Feria agrícola en la plaza de un pueblo</title>
-  <rect width="800" height="400" fill="#d8eedd"/>
-  <rect y="320" width="800" height="80" fill="#9a6b3f"/>
-  <circle cx="400" cy="120" r="60" fill="#f7f3ee"/>
-  <path d="M120 300 Q200 220 280 300 L280 340 L120 340 Z" fill="#2f7d4a"/>
-  <path d="M240 300 Q320 240 400 300 L400 340 L240 340 Z" fill="#2f7d4a"/>
-  <circle cx="190" cy="245" r="28" fill="#f0c060"/>
-  <circle cx="330" cy="275" r="24" fill="#e05a4a"/>
-  <circle cx="330" cy="275" r="8" fill="#f7f3ee"/>
-  <path d="M480 300 Q560 210 640 300" fill="none" stroke="#25613a" stroke-width="6"/>
-  <circle cx="560" cy="225" r="14" fill="#e05a4a"/>
-  <rect x="620" y="180" width="120" height="14" fill="#9a6b3f"/>
-  <rect x="620" y="170" width="120" height="14" fill="#f0c060"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600" width="1200" height="600" preserveAspectRatio="xMidYMid slice" role="img" aria-labelledby="t1">
+  <title id="t1">Puestos de frutas y verduras en una feria urbana al amanecer</title>
+  <defs>
+    <linearGradient id="f1-cielo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffe6a3" />
+      <stop offset="0.45" stop-color="#f7d9a0" />
+      <stop offset="1" stop-color="#d8eedd" />
+    </linearGradient>
+    <radialGradient id="f1-sol" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#fff3c4" />
+      <stop offset="0.55" stop-color="#fbbf24" />
+      <stop offset="1" stop-color="#f59e0b" />
+    </radialGradient>
+    <linearGradient id="f1-calle" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#a97c50" />
+      <stop offset="1" stop-color="#7c5330" />
+    </linearGradient>
+    <pattern id="f1-rayas" width="40" height="40" patternUnits="userSpaceOnUse">
+      <rect width="40" height="40" fill="#f7f3ee" />
+      <rect width="20" height="40" fill="#2f7d4a" />
+    </pattern>
+    <pattern id="f1-banderines" width="60" height="40" patternUnits="userSpaceOnUse">
+      <path d="M0 0h30l-15 22z" fill="#fbbf24" />
+      <path d="M30 0h30l-15 22z" fill="#ffffff" />
+    </pattern>
+  </defs>
+
+  <!-- Cielo -->
+  <rect width="1200" height="600" fill="url(#f1-cielo)" />
+
+  <!-- Sol y resplandor -->
+  <circle cx="960" cy="150" r="120" fill="#fbbf24" opacity="0.22" />
+  <circle cx="960" cy="150" r="74" fill="url(#f1-sol)" />
+
+  <!-- Nubes -->
+  <g fill="#ffffff" opacity="0.8">
+    <ellipse cx="250" cy="120" rx="96" ry="34" />
+    <ellipse cx="196" cy="132" rx="62" ry="26" />
+    <ellipse cx="312" cy="134" rx="54" ry="22" />
+    <ellipse cx="700" cy="86" rx="74" ry="26" />
+    <ellipse cx="756" cy="94" rx="48" ry="18" />
+  </g>
+
+  <!-- Palmeras del fondo -->
+  <g fill="#1e4d2e" opacity="0.9">
+    <path d="M132 330c-6-70-2-120 10-160h14c-10 42-12 92-4 160z" />
+    <path d="M146 176c-46-22-74-16-96-2 34-2 62 6 92 24zM150 172c40-28 74-30 100-20-32 4-58 18-84 44zM148 168c-8-42-30-62-58-70 16 26 24 46 30 76z" />
+    <path d="M1088 336c-5-64-2-110 9-146h12c-9 38-11 84-3 146z" />
+    <path d="M1100 196c-40-20-64-14-84-2 30-2 54 6 80 22zM1103 192c35-25 65-26 88-18-28 4-50 16-72 38zM1101 188c-7-37-26-55-50-62 14 23 21 40 26 68z" />
+  </g>
+
+  <!-- Edificios de la ciudad -->
+  <g opacity="0.35" fill="#1e4d2e">
+    <rect x="330" y="250" width="90" height="150" rx="6" />
+    <rect x="430" y="290" width="70" height="110" rx="6" />
+    <rect x="510" y="220" width="110" height="180" rx="6" />
+    <rect x="630" y="278" width="66" height="122" rx="6" />
+  </g>
+
+  <!-- Banderines de la feria -->
+  <g>
+    <path d="M0 40q300 46 600 24t600-6" stroke="#4d341f" stroke-width="3" fill="none" opacity="0.55" />
+    <path d="M40 56q290 44 580 24t540-8v22q-260 34-560 14T40 78z" fill="url(#f1-banderines)" />
+  </g>
+
+  <!-- Calle de adoquín -->
+  <rect y="430" width="1200" height="170" fill="url(#f1-calle)" />
+  <g stroke="#7c5330" stroke-width="2" opacity="0.5">
+    <path d="M0 470h1200M0 520h1200M0 572h1200" />
+  </g>
+
+  <!-- Tres puestos con toldo a rayas -->
+  <g>
+    <g>
+      <rect x="96" y="286" width="330" height="26" rx="8" fill="url(#f1-rayas)" />
+      <path d="M96 312h330l-18 26H114z" fill="#efe5d8" />
+      <rect x="110" y="312" width="14" height="150" fill="#644227" />
+      <rect x="398" y="312" width="14" height="150" fill="#644227" />
+      <rect x="118" y="392" width="286" height="24" rx="6" fill="#9a6b3f" />
+      <rect x="132" y="360" width="120" height="34" rx="6" fill="#9a6b3f" />
+      <rect x="266" y="360" width="120" height="34" rx="6" fill="#9a6b3f" />
+      <g fill="#f59e0b"><circle cx="160" cy="366" r="15" /><circle cx="196" cy="370" r="13" /><circle cx="228" cy="366" r="14" /></g>
+      <g fill="#e05a4a"><circle cx="300" cy="368" r="14" /><circle cx="334" cy="364" r="12" /><circle cx="366" cy="370" r="13" /></g>
+      <g fill="#2f7d4a"><path d="M142 362c14-18 32-18 46 0-12 8-34 8-46 0z" /><path d="M276 364c14-20 34-20 48 0-14 8-34 8-48 0z" /></g>
+      <g fill="#25613a"><ellipse cx="176" cy="352" rx="26" ry="14" /><ellipse cx="320" cy="354" rx="26" ry="14" /></g>
+    </g>
+
+    <g>
+      <rect x="452" y="316" width="300" height="24" rx="8" fill="url(#f1-rayas)" />
+      <path d="M452 340h300l-16 24H468z" fill="#efe5d8" />
+      <rect x="466" y="340" width="13" height="122" fill="#644227" />
+      <rect x="726" y="340" width="13" height="122" fill="#644227" />
+      <rect x="474" y="404" width="256" height="22" rx="6" fill="#9a6b3f" />
+      <g fill="#fcd34d">
+        <path d="M492 388c22-16 46-16 68 0-22 14-46 14-68 0z" />
+        <path d="M576 388c22-16 46-16 68 0-22 14-46 14-68 0z" />
+      </g>
+      <g fill="#2f7d4a">
+        <ellipse cx="516" cy="382" rx="30" ry="18" />
+        <ellipse cx="566" cy="378" rx="26" ry="16" />
+        <ellipse cx="610" cy="384" rx="30" ry="18" />
+        <ellipse cx="652" cy="380" rx="24" ry="15" />
+      </g>
+    </g>
+
+    <g>
+      <rect x="790" y="300" width="330" height="26" rx="8" fill="url(#f1-rayas)" />
+      <path d="M790 326h330l-18 26H808z" fill="#efe5d8" />
+      <rect x="804" y="326" width="14" height="136" fill="#644227" />
+      <rect x="1092" y="326" width="14" height="136" fill="#644227" />
+      <rect x="812" y="396" width="286" height="24" rx="6" fill="#9a6b3f" />
+      <g fill="#e05a4a">
+        <circle cx="850" cy="374" r="15" /><circle cx="888" cy="378" r="13" /><circle cx="924" cy="372" r="14" />
+      </g>
+      <g fill="#f59e0b">
+        <circle cx="972" cy="376" r="14" /><circle cx="1008" cy="372" r="12" /><circle cx="1044" cy="378" r="13" />
+      </g>
+      <g fill="#25613a">
+        <path d="M828 380c14-22 34-22 48 0-14 8-34 8-48 0z" />
+        <path d="M1000 380c14-20 34-20 48 0-14 8-34 8-48 0z" />
+      </g>
+    </g>
+  </g>
+
+  <!-- Compradores y vendedores -->
+  <g fill="#173c25">
+    <g transform="translate(258 424)">
+      <circle cx="0" cy="0" r="22" />
+      <path d="M-26 26c0-20 12-34 26-34s26 14 26 34z" />
+    </g>
+    <g transform="translate(700 430)">
+      <circle cx="0" cy="0" r="20" />
+      <path d="M-24 24c0-18 11-30 24-30s24 12 24 30z" />
+    </g>
+    <g transform="translate(1096 432)">
+      <circle cx="0" cy="0" r="19" />
+      <path d="M-23 23c0-17 10-28 23-28s23 11 23 28z" />
+    </g>
+  </g>
+
+  <!-- Cesta del productor en primer plano -->
+  <g transform="translate(60 470)">
+    <path d="M0 0h150l-18 96H18z" fill="#d97706" />
+    <path d="M12 22h126l-14 68H26z" fill="#f59e0b" />
+    <g fill="#2f7d4a"><circle cx="46" cy="6" r="17" /><circle cx="80" cy="-2" r="15" /><circle cx="110" cy="8" r="16" /></g>
+    <g fill="#e05a4a"><circle cx="62" cy="-6" r="13" /><circle cx="94" cy="4" r="12" /></g>
+  </g>
 </svg>

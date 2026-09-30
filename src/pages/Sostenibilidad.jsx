@@ -1,11 +1,35 @@
 import { useEffect, useState } from 'react'
-import { obtenerMetricas } from '../services/feriasApi.js'
+import { ApiError, obtenerMetricas } from '../services/feriasApi.js'
 
 /**
  * Sustenta el número usando formato español (es-BO).
  */
 const formatearNumero = (valor) =>
   new Intl.NumberFormat('es-BO', { maximumFractionDigits: 1 }).format(valor || 0)
+
+/**
+ * Espera (ms) antes de cada reintento automático. El despliegue en
+ * Vercel puede tardar en "despertar" (cold start) la función sin
+ * servidor, así que el tablero reintenta solo un par de veces antes de
+ * mostrar el error definitivo.
+ */
+const ESPERA_REINTENTO = [0, 6000, 15000]
+const MAX_INTENTOS = ESPERA_REINTENTO.length - 1
+
+/**
+ * Traduce el fallo a un mensaje útil para el usuario final.
+ * - Sin conexión / servidor dormido → sugiere reintentar.
+ * - Error HTTP concreto (500, 502…) → indica el código recibido.
+ */
+const mensajeDeError = (fallo) => {
+  if (fallo instanceof ApiError && fallo.status >= 500) {
+    return `El servidor respondió con un error (${fallo.status}). Suele ser un reinicio temporal: presiona "Reintentar" en unos segundos.`
+  }
+  if (fallo instanceof ApiError) {
+    return `La API respondió con el código ${fallo.status}. ${fallo.message}`
+  }
+  return 'No se pudo conectar con la API. Revisa tu conexión a internet y presiona "Reintentar".'
+}
 
 /**
  * Sostenibilidad — Tablero de métricas de sostenibilidad (3 bloques).
@@ -25,20 +49,32 @@ export default function Sostenibilidad() {
 
   useEffect(() => {
     let activo = true
+    let temporizador = null
     obtenerMetricas()
       .then((respuesta) => {
         if (activo) setDatos(respuesta)
       })
-      .catch(() => {
-        if (activo) {
-          setError('No se pudieron cargar las métricas. Verifica que el servidor esté encendido (npm run server).')
+      .catch((fallo) => {
+        if (!activo) return
+        // Reintento automático para sobrevivir al arranque en frío del
+        // servidor (Vercel Hobby) o a un fallo de red puntual.
+        if (intento < MAX_INTENTOS) {
+          temporizador = setTimeout(() => {
+            if (activo) {
+              setCargando(true)
+              setIntento((n) => n + 1)
+            }
+          }, ESPERA_REINTENTO[intento + 1])
+          return
         }
+        setError(mensajeDeError(fallo))
       })
       .finally(() => {
         if (activo) setCargando(false)
       })
     return () => {
       activo = false
+      if (temporizador) clearTimeout(temporizador)
     }
   }, [intento])
 
@@ -48,10 +84,11 @@ export default function Sostenibilidad() {
     setIntento((n) => n + 1)
   }
 
+  // Acceso seguro: mientras `datos` es null (primeros renderizados o error de
+  // red) la página debe seguir mostrando el encabezado, sin romperse.
+  const tamanoKb = datos?.tecnico?.tamano_kb ?? 0
   const kab =
-    datos?.tecnico.tamano_kb >= 1024
-      ? `${formatearNumero(datos.tecnico.tamano_kb / 1024)} MB`
-      : `${formatearNumero(datos.tecnico.tamano_kb)} KB`
+    tamanoKb >= 1024 ? `${formatearNumero(tamanoKb / 1024)} MB` : `${formatearNumero(tamanoKb)} KB`
 
   return (
     <main id="contenido" className="mx-auto max-w-6xl px-4 py-10 sm:px-6">
@@ -72,7 +109,7 @@ export default function Sostenibilidad() {
 
         {cargando && (
           <p role="status" className="text-tierra-600">
-            Cargando métricas…
+            {intento > 0 ? 'Reconectando con el servidor…' : 'Cargando métricas…'}
           </p>
         )}
 

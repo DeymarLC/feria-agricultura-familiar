@@ -16,7 +16,7 @@ Seguridad:
 El serializador devuelve exactamente los campos que espera el frontend
 React (fechaInicio, fechaFin, productos, destacada, imagen...).
 """
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
 
 from flask import Blueprint, g, jsonify, request
 
@@ -28,6 +28,16 @@ ferias_bp = Blueprint('ferias', __name__)
 
 # ---------- Ayudantes internos (solo para este recurso) ----------
 
+# Bolivia (UTC-4) no aplica horario de verano, así que un offset fijo basta
+# y evita depender de la base de datos de zonas horarias del servidor.
+ZONA_LOCAL = timezone(timedelta(hours=-4))
+
+
+def _hoy_local():
+    """Fecha de hoy según la hora de Bolivia, no la del servidor (que puede ser UTC)."""
+    return datetime.now(ZONA_LOCAL).date()
+
+
 def _validar_fecha(valor, campo):
     """Valida que una fecha tenga formato YYYY-MM-DD. Devuelve el mensaje de error o ''."""
     if not valor:
@@ -37,6 +47,23 @@ def _validar_fecha(valor, campo):
         return ''
     except ValueError:
         return f'{campo} debe tener formato AAAA-MM-DD.'
+
+
+def _fecha_no_pasada(valor, campo, hoy=None):
+    """
+    Regla de negocio: no se admiten ferias ya realizadas.
+    Si la fecha es anterior a hoy devuelve el mensaje de error; si el
+    formato es inválido devuelve '' (ese error ya lo reporta _validar_fecha).
+    """
+    if not valor:
+        return ''
+    try:
+        fecha = datetime.strptime(valor, '%Y-%m-%d').date()
+    except ValueError:
+        return ''
+    if fecha < (hoy or _hoy_local()):
+        return f'{campo} no puede ser anterior a la fecha de hoy.'
+    return ''
 
 
 def _obtener_productos(feria_id):
@@ -67,7 +94,8 @@ def _serializar_feria(fila):
         'correo': fila['correo_contacto'],
         'horario': fila['horario'] or '',
         'organizador': fila['organizador'] or '',
-        'imagen': fila['imagen_url'] or '/images/feria-1.svg',
+        # Ilustración genérica cuando la feria no tiene foto propia
+        'imagen': fila['imagen_url'] or '/images/feria-4.svg',
         'destacada': fila['destacada'],
         'productos': _obtener_productos(fila['id']),
     }
@@ -121,6 +149,11 @@ def _validar_datos_feria(payload):
     err_fecha = _validar_fecha(fecha_inicio, 'fechaInicio')
     if err_fecha:
         errores['fechaInicio'] = err_fecha
+    else:
+        # Regla de negocio: una feria no puede empezar en una fecha pasada.
+        err_pasada = _fecha_no_pasada(fecha_inicio, 'La fecha de inicio')
+        if err_pasada:
+            errores['fechaInicio'] = err_pasada
     if _validar_fecha(fecha_fin, 'fechaFin'):
         errores['fechaFin'] = _validar_fecha(fecha_fin, 'fechaFin')
     else:
