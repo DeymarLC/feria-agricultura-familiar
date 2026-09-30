@@ -97,15 +97,16 @@ body {
   pointer-events: none;
 }
 
-/* Tarjetas que "flotan" al pasar el cursor */
+/* Tarjetas: al pasar el cursor solo cambian sombra y borde.
+   Nada se desplaza, para que la vista no "salte" bajo el cursor. */
 .tarjeta-viva {
   transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease;
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
 }
 .tarjeta-viva:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 22px 45px -22px rgba(16, 43, 26, 0.55);
+  box-shadow: 0 16px 34px -24px rgba(16, 43, 26, 0.55);
+  border-color: var(--color-verde-500);
 }
 
 /* Entrada suave del contenido */
@@ -138,6 +139,12 @@ body {
   }
 }
 
+/* Capa decorativa del brillo.
+   IMPORTANTE: aplicarla solo a un <span aria-hidden="true"> DENTRO de un
+   elemento posicionado (por ejemplo `className="relative"` en el botón).
+   Estas reglas están fuera de `@layer`, así que ganan a las utilidades de
+   Tailwind: si se pusieran sobre el propio <a>, su `inset: 0` se resolvería
+   contra la página y el botón ocuparía toda la ventana sin recibir clics. */
 .brillo {
   position: absolute;
   inset: 0;
@@ -174,7 +181,6 @@ body {
   .tarjeta-viva,
   .tarjeta-viva:hover {
     transition: none;
-    transform: none;
   }
   .brillo:hover::after {
     animation: none;

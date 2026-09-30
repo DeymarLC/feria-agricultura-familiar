@@ -133,8 +133,9 @@ export default function Home() {
           <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Link
               to="/ferias"
-              className="brillo relative inline-flex min-h-12 w-full items-center justify-center rounded-xl bg-white px-8 py-3 text-base font-bold text-verde-800 shadow-lg transition-transform hover:-translate-y-0.5 sm:w-auto"
+              className="relative inline-flex min-h-12 w-full items-center justify-center rounded-xl bg-white px-8 py-3 text-base font-bold text-verde-800 shadow-lg transition-colors hover:bg-verde-50 sm:w-auto"
             >
+              <span className="brillo" aria-hidden="true" />
               Ver catálogo de ferias
             </Link>
             <Link
@@ -235,8 +236,9 @@ export default function Home() {
           </div>
           <Link
             to="/sostenibilidad"
-            className="brillo relative inline-flex min-h-12 shrink-0 items-center justify-center rounded-xl bg-white px-7 py-3 font-bold text-verde-800 shadow-lg transition-transform hover:-translate-y-0.5"
+            className="relative inline-flex min-h-12 shrink-0 items-center justify-center rounded-xl bg-white px-7 py-3 font-bold text-verde-800 shadow-lg transition-colors hover:bg-verde-50"
           >
+            <span className="brillo" aria-hidden="true" />
             Ver tablero de sostenibilidad
           </Link>
         </div>

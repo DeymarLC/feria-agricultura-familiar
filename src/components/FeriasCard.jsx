@@ -11,14 +11,15 @@ const IMAGEN_POR_DEFECTO = '/images/feria-4.svg'
  * - Etiqueta semántica <article> que agrupa toda la información.
  * - Titular con encabezado (<h3>) para estructura de navegación por títulos.
  * - Imagen con `alt` descriptivo y con `loading="lazy"` para rendimiento.
- * - Enlace claro "Ver detalles" como única acción (evita enlaces duplicados).
+ * - Un solo enlace por tarjeta ("Ver detalles"), estirado con `after:inset-0`
+ *   para que un clic en cualquier punto de la tarjeta abra la ficha.
  * - Área táctil generosa (>= 44px) en el botón de color.
  */
 export default function FeriasCard({ feria }) {
   const imagenFeria = feria.imagen?.trim() || IMAGEN_POR_DEFECTO
 
   return (
-    <article className="tarjeta-viva flex flex-col overflow-hidden rounded-2xl border border-tierra-100 bg-marfil shadow-sm">
+    <article className="tarjeta-viva relative flex flex-col overflow-hidden rounded-2xl border border-tierra-100 bg-marfil shadow-sm">
       {/* Imagen de la feria: altura fija, lazy loading y alt descriptivo */}
       <div className="relative overflow-hidden">
         <img
@@ -32,7 +33,7 @@ export default function FeriasCard({ feria }) {
             if (evento.currentTarget.src.endsWith(IMAGEN_POR_DEFECTO)) return
             evento.currentTarget.src = IMAGEN_POR_DEFECTO
           }}
-          className="h-48 w-full bg-verde-100 object-cover transition-transform duration-500 hover:scale-105"
+          className="h-48 w-full bg-verde-100 object-cover"
         />
         {feria.destacada && (
           <span className="marca absolute left-3 top-3 rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wide text-white shadow">
@@ -75,11 +76,13 @@ export default function FeriasCard({ feria }) {
           ))}
         </ul>
 
-        {/* Enlace principal de la tarjeta → ficha individual /ferias/:id */}
+        {/* Enlace principal de la tarjeta → ficha individual /ferias/:id.
+            Sin `relative` aquí: el `after:inset-0` se ancla al <article>, que sí
+            es `relative`, y por eso el clic funciona en toda la tarjeta. */}
         <div className="pt-2">
           <Link
             to={`/ferias/${feria.id}`}
-            className="brillo relative inline-flex min-h-11 w-full items-center justify-center rounded-xl bg-verde-700 px-4 py-2.5 text-sm font-bold text-white transition-transform hover:-translate-y-0.5 focus-visible:outline-verde-500"
+            className="inline-flex min-h-11 w-full items-center justify-center rounded-xl bg-verde-700 px-4 py-2.5 text-sm font-bold text-white transition-colors hover:bg-verde-800 focus-visible:outline-verde-500 after:absolute after:inset-0 after:content-['']"
             aria-label={`Ver detalles de la feria ${feria.nombre}`}
           >
             Ver detalles →
